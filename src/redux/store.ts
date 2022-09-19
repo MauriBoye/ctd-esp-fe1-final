@@ -7,6 +7,7 @@ import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector,
 } from "react-redux";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({});
 
@@ -17,5 +18,5 @@ export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools() // Aqui aplicaremos los middlewares
+  composeWithDevTools(applyMiddleware(thunk)) // Aqui aplicaremos los middlewares
 );
