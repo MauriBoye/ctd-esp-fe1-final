@@ -1,22 +1,24 @@
-import './tarjeta-episodio.css';
+import "./tarjeta-episodio.css";
+import { useAppSelector } from "../../hooks";
 
 /**
  * Tarjeta para cada episodio dentro de la vista de personaje.
- * 
- * Deberás agregar las propiedades necesarias para mostrar los datos de los episodios
- * 
- * 
- * @returns un JSX element 
+ * @returns un JSX element
  */
-const TarjetaEpisodio = () => {
+const TarjetaEpisodio = ({ episode }) => {
+    const { loading } = useAppSelector((state) => state.personajes);
 
-    return <div className="tarjeta-episodio">
-            <h4>Close Rick-counters of the Rick Kind</h4>
+    if (loading) return <div> Cargando...</div>;
+
+    return (
+        <div className="tarjeta-episodio">
+            <h4>{episode.name}</h4>
             <div>
-                <span>S01E01</span>
-                <span>Lanzado el: April 7, 2014</span>
+                <span>{episode.episode}</span>
+                <span>Lanzado el: {episode.air_date}</span>
             </div>
-    </div>
-}
+        </div>
+    );
+};
 
 export default TarjetaEpisodio;
